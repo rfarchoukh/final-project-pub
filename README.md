@@ -6,4 +6,4 @@ Public repository for DevOps final project
 - `docker build . -t http_server`
 - `docker run -d -p 8888:80 http_server`
 - `docker ps -a`
-  - Ensure that container is running
+  - Ensure that container is running at http://localhost:8888
