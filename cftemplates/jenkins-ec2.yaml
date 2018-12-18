@@ -16,11 +16,6 @@ Parameters:
         Type: String
         Default: t2.micro
 
-    SSHKey:
-        Description: SSH Key Name
-        Type: String
-        Default: scott-ouellette-extension-school
-
     AMI:
         Description: AMI to create the EC2
         Type: String
@@ -37,10 +32,6 @@ Resources:
                   FromPort: '8888'
                   ToPort: '8888'
                   CidrIp: 0.0.0.0/0
-                - IpProtocol: tcp
-                  FromPort: '22'
-                  ToPort: '22'
-                  CidrIp: 0.0.0.0/0
     # EC2 Instances -------------------------------------
     
     JenkinsEC2:
@@ -48,7 +39,6 @@ Resources:
         Properties:
           ImageId: !Ref AMI
           InstanceType: !Ref InstanceType
-          KeyName: !Ref SSHKey
           Tags:
             - 
               Key: Name
@@ -60,14 +50,13 @@ Resources:
               Fn::Sub:
                 - |
                   #!/bin/bash -xe
-                  yum update -y
-                  yum install -y git
+                  yum install -y git docker
 
-                  yum install docker -y
                   systemctl enable docker
                   systemctl start docker
-    
+
                   mkdir -p /root/.ssh
+
                   cat > /root/.ssh/id_rsa << EOF
                   -----BEGIN RSA PRIVATE KEY-----
                   MIIEpAIBAAKCAQEAnI8JU+eC/BHuW+Ye6CQZ6Xcf/7jz3+9dt6WKNRvzjo1p2y1n
@@ -101,17 +90,12 @@ Resources:
                   chmod 700 /root/.ssh
                   chmod 600 /root/.ssh/id_rsa
                   ssh-keyscan github.com 2>&1  | grep rsa >> /root/.ssh/known_hosts
-                  
-                  /bin/git config --global user.email "jenkins@example.com"
-                  /bin/git config --global user.name jenkins
 
                   mkdir -p /root/final-project-pub
                   /bin/git clone git@github.com:rfarchoukh/final-project-pub.git /root/final-project-pub
                   cd /root/final-project-pub
                   /bin/git checkout ${GITHUB_BRANCH}
                   /bin/git pull
-                  
-                  /bin/bash /root/final-project-pub/dockerScript.sh
 
-                  exit 0
+                  /bin/bash /root/final-project-pub/dockerScript.sh
                 - GITHUB_BRANCH: !Ref GithubBranch
