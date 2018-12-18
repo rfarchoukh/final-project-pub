@@ -112,4 +112,6 @@ Resources:
                   /bin/git pull
                   
                   /bin/bash /root/final-project-pub/dockerScript.sh
+
+                  exit 0
                 - GITHUB_BRANCH: !Ref GithubBranch
