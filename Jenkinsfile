@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Dev Deployment') {
+    stage('Deployment') {
       steps {
         git(url: 'https://github.com/rfarchoukh/final-project-pub.git', branch: 'dev', credentialsId: 'Ramzi Repository Token')
         sh '''
@@ -9,10 +9,13 @@ pipeline {
 ./deploy.sh'''
       }
     }
-    stage('Dev Tests') {
+    stage('Testing') {
       steps {
         sh './deploy.sh'
       }
     }
+  }
+  environment {
+    SERVER_IP = ''
   }
 }
