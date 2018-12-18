@@ -9,5 +9,10 @@ pipeline {
 ./deploy.sh'''
       }
     }
+    stage('Dev Tests') {
+      steps {
+        sh './deploy.sh'
+      }
+    }
   }
 }
