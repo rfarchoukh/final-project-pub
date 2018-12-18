@@ -16,11 +16,6 @@ Parameters:
         Type: String
         Default: t2.micro
 
-    SSHKey:
-        Description: SSH Key Name
-        Type: String
-        Default: scott-ouellette-extension-school
-
     AMI:
         Description: AMI to create the EC2
         Type: String
@@ -37,10 +32,6 @@ Resources:
                   FromPort: '8888'
                   ToPort: '8888'
                   CidrIp: 0.0.0.0/0
-                - IpProtocol: tcp
-                  FromPort: '22'
-                  ToPort: '22'
-                  CidrIp: 0.0.0.0/0
     # EC2 Instances -------------------------------------
     
     JenkinsEC2:
@@ -48,7 +39,6 @@ Resources:
         Properties:
           ImageId: !Ref AMI
           InstanceType: !Ref InstanceType
-          KeyName: !Ref SSHKey
           Tags:
             - 
               Key: Name
