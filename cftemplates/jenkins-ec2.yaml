@@ -30,7 +30,7 @@ Resources:
     SecurityGroup:
         Type: 'AWS::EC2::SecurityGroup'
         Properties:
-            GroupName: SSH_HTTP_ACCESS
+            GroupName: !Sub SSH_HTTP_ACCESS-${GithubBranch}
             GroupDescription: Internet access port 8888
             SecurityGroupIngress:
                 - IpProtocol: tcp
