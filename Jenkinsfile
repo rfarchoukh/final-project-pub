@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Code Tests') {
       steps {
-        sh './Final-Project/validation/validate_local_html.sh'
+        sh './Final-Project/placeholder.sh'
       }
     }
     stage('Deploy') {
@@ -21,12 +21,12 @@ pipeline {
     }
     stage('Validation') {
       steps {
-        sh './test.sh'
+        sh './Final-Project/placeholder.sh'
       }
     }
     stage('Destroy Instances') {
       steps {
-        sh './Final-Project/destroy-stack.sh'
+        sh './Final-Project/placeholder.sh'
       }
     }
   }
