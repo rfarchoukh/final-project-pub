@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Code Tests') {
       steps {
-        sh './test.sh'
+        sh './Final-Project/validation/validate_local_html.sh'
       }
     }
     stage('Deploy') {
@@ -19,7 +19,7 @@ pipeline {
         sh './Final-Project/deploy.sh'
       }
     }
-    stage('Health Checks/Validation') {
+    stage('Validation') {
       steps {
         sh './test.sh'
       }
