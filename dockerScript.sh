@@ -1,8 +1,9 @@
 #!/bin/sh
 docker build . -t http_server
 
-if [ "${BRANCH_NAME}" = "dev" ] || [ "${BRANCH_NAME}" = "stage" ]; then
-    HTTP_SERVER_PORT=8888
+# Check if we're on AWS or GCP by curling AWS default metadata url
+if curl http://169.254.169.254/latest/meta-data/; then
+     HTTP_SERVER_PORT=8888
 else
     HTTP_SERVER_PORT=80
 fi
