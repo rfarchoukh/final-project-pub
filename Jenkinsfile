@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Code Tests') {
       steps {
-        sh './Final-Project/placeholder.sh'
+        sh './Final-Project/validation/validate_local_html.sh'
       }
     }
     stage('Deploy') {
