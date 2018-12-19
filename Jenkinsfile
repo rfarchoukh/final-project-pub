@@ -21,12 +21,12 @@ pipeline {
     }
     stage('Validation') {
       steps {
-        sh './Final-Project/validation/check_url.sh'
+        sh './Final-Project/placeholder.sh'
       }
     }
     stage('Destroy Instances') {
       steps {
-        sh './Final-Project/placeholder.sh'
+        sh './Final-Project/destroy-stack.sh'
       }
     }
   }
