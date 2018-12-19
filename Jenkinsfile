@@ -1,17 +1,32 @@
 pipeline {
   agent any
   stages {
-    stage('Deployment') {
+    stage('Pull Private Repo') {
       steps {
         git(url: 'https://github.com/rfarchoukh/final-project-pub.git', branch: 'dev', credentialsId: 'Ramzi Repository Token')
         sh '''
 
-./deploy.sh'''
+./pull-private-repo.sh'''
       }
     }
-    stage('Testing') {
+    stage('Code Tests') {
       steps {
-        sh './test.sh'
+        sh './Final-Project/validation/validate_local_html.sh'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh './Final-Project/deploy.sh'
+      }
+    }
+    stage('Validation') {
+      steps {
+        sh './Final-Project/placeholder.sh'
+      }
+    }
+    stage('Destroy Instances') {
+      steps {
+        sh './Final-Project/destroy-stack.sh'
       }
     }
   }
