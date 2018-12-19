@@ -26,7 +26,7 @@ pipeline {
     }
     stage('Destroy Instances') {
       steps {
-        sh './test.sh'
+        sh './Final-Project/destroy-stack.sh'
       }
     }
   }
