@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Validation') {
       steps {
-        sh './Final-Project/placeholder.sh'
+        sh './Final-Project/validation/check_url.sh'
       }
     }
     stage('Destroy Instances') {
