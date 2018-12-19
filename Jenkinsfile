@@ -9,9 +9,24 @@ pipeline {
 ./pull-private-repo.sh'''
       }
     }
+    stage('Code Tests') {
+      steps {
+        sh './test.sh'
+      }
+    }
     stage('Deploy') {
       steps {
         sh './Final-Project/deploy.sh'
+      }
+    }
+    stage('Health Checks/Validation') {
+      steps {
+        sh './test.sh'
+      }
+    }
+    stage('Destroy Instances') {
+      steps {
+        sh './test.sh'
       }
     }
   }
