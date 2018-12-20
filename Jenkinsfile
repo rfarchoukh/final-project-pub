@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Validation') {
       steps {
-        sh './Final-Project/placeholder.sh'
+        sh './Final-Project/validation/validate_remote_html.sh'
       }
     }
     stage('Destroy Instances') {
