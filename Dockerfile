@@ -1,5 +1,3 @@
 from python:3
-
-COPY index.html .
-
+WORKDIR /usr/src/app
 CMD ["python", "-m", "http.server", "80"]
