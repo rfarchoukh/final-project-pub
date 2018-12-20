@@ -19,11 +19,6 @@ pipeline {
         sh './Final-Project/deploy.sh'
       }
     }
-    stage('Validation') {
-      steps {
-        sh './Final-Project/validation/validate_remote_html.sh'
-      }
-    }
     stage('Destroy Instances') {
       steps {
         sh './Final-Project/destroy-stack.sh'
