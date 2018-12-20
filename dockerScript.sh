@@ -8,4 +8,4 @@ else
     HTTP_SERVER_PORT=80
 fi
 
-docker run -d -p $HTTP_SERVER_PORT:80 http_server
+docker run -d -v $PWD:/usr/src/app -p $HTTP_SERVER_PORT:80 http_server
